@@ -3,15 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.tests.RestfulEndtoEnd">
+      <class name="com.tests.testttt">
         <methods>
-          <include name="setUp"/>
-          <include name="deleteBooking"/>
-          <include name="partialUpdateBooking"/>
-          <include name="createBooking"/>
-          <include name="updateBooking"/>
+          <include name="m1"/>
         </methods>
-      </class> <!-- com.tests.RestfulEndtoEnd -->
+      </class> <!-- com.tests.testttt -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
