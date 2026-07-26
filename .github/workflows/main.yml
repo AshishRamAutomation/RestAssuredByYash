@@ -42,4 +42,4 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: ExtentReport
-          path: CICDReports/
+          path: target/
