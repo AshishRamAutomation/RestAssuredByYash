@@ -8,15 +8,15 @@ import java.util.Map;
 public class RestAssuredUtil {
 
     /**
-     * Builds a base RequestSpecification containing optional headers and body.
+     *  RequestSpecification- optional headers and body.
      */
-    private static RequestSpecification buildBaseRequest(Map<String, String> headers, Object body) {
+    private static RequestSpecification baseRequest(Map<String, String> headers, Object body) {
         RequestSpecification request = given();
         
         if (headers != null && !headers.isEmpty()) {
             request.headers(headers);
         } else {
-            request.contentType("application/json"); // Default fallback
+            request.contentType("application/json"); // Default
         }
         
         if (body != null) {
@@ -30,7 +30,7 @@ public class RestAssuredUtil {
      * Reusable GET request method.
      */
     public static Response performGet(String baseUri, String endpoint, Map<String, String> headers) {
-        return buildBaseRequest(headers, null)
+        return baseRequest(headers, null)
                 .baseUri(baseUri)
                 .when()
                 .get(endpoint);
@@ -40,7 +40,7 @@ public class RestAssuredUtil {
      * Reusable POST request method.
      */
     public static Response performPost(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return buildBaseRequest(headers, body)
+        return baseRequest(headers, body)
                 .baseUri(baseUri)
                 .when()
                 .post(endpoint);
@@ -50,7 +50,7 @@ public class RestAssuredUtil {
      * Reusable PUT request method.
      */
     public static Response performPut(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return buildBaseRequest(headers, body)
+        return baseRequest(headers, body)
                 .baseUri(baseUri)
                 .when()
                 .put(endpoint);
@@ -60,7 +60,7 @@ public class RestAssuredUtil {
      * Reusable PATCH request method.
      */
     public static Response performPatch(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return buildBaseRequest(headers, body)
+        return baseRequest(headers, body)
                 .baseUri(baseUri)
                 .when()
                 .patch(endpoint);
@@ -70,7 +70,7 @@ public class RestAssuredUtil {
      * Reusable DELETE request method.
      */
     public static Response performDelete(String baseUri, String endpoint, Map<String, String> headers) {
-        return buildBaseRequest(headers, null)
+        return baseRequest(headers, null)
                 .baseUri(baseUri)
                 .when()
                 .delete(endpoint);
