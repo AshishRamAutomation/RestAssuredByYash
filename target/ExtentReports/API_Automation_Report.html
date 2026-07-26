@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>API Test Execution Report</title>
+<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png">
+<link href="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/css/spark-style.css" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@7cc78ce/spark/js/jsontree.js"></script>
+<style type="text/css">.header .vheader { height: 65px !important; background-color: #1976D2 !important;}.header .vheader .nav-left li a, .header .vheader .nav-right li a, .header .vheader .nav-left li i { color: #FFFFFF !important;}.badge-info, .status.info, .info-bg, .test-status.info { background-color: #1E88E5 !important; color: #FFFFFF !important;}table.table tbody tr td .status.info i, .card-footer .stats .info i { color: #1E88E5 !important;}.nav-logo { background-image: url('data:image/png;base64,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') !important; background-size: contain !important; background-repeat: no-repeat !important; background-position: left center !important; width: 240px !important; height: 50px !important; margin-top: 7px !important; margin-left: 15px !important; display: inline-block !important; color: transparent !important; font-size: 0 !important;}.logo, .brand-logo { background-image: none !important; }.nav-logo { filter: brightness(1.2) contrast(1.1) !important;}.logo .ico, .nav-logo i, .brand-logo i, .logo span, .brand-logo span, .nav-logo span { display: none !important; }</style></head><body class="spa -report dark">
+  <div class="app">
+    <div class="layout">
+<div class="header navbar">
+<div class="vheader">
+<div class="nav-logo">
+<a href="#">
+<div class="logo" style="background-image: url('https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@b00a2d0486596e73dd7326beacf352c639623a0e/commons/img/logo.png')"></div>
+</a>
+</div>
+<ul class="nav-left">
+<li class="search-box">
+<a class="search-toggle" href="#">
+<i class="search-icon fa fa-search"></i>
+<i class="search-icon-close fa fa-close"></i>
+</a>
+</li>
+<li class="search-input"><input id="search-tests" class="form-control" type="text" placeholder="Search..."></li>
+</ul>
+<ul class="nav-right">
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">REST Assured Test Results Summary</span></a>
+</li>
+<li class="m-r-10">
+<a href="#"><span class="badge badge-primary">Sunday, July 26, 2026, 08:08 AM (IST)</span></a>
+</li>
+</ul>
+</div>
+</div><div class="side-nav">
+<div class="side-nav-inner">
+<ul class="side-nav-menu">
+<li class="nav-item dropdown" onclick="toggleView('test-view')">
+<a id="nav-test" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-list"></i></span>
+</a>
+</li>
+<li class="nav-item dropdown" onclick="toggleView('dashboard-view')">
+<a id="nav-dashboard" class="dropdown-toggle" href="#">
+<span class="ico"><i class="fa fa-bar-chart"></i></span>
+</a>
+</li>
+</ul>
+</div>
+</div>      <div class="vcontainer">
+        <div class="main-content">
+<div class="test-wrapper row view test-view">
+  <div class="test-list">
+    <div class="test-list-tools">
+<ul class="tools pull-left">
+<li><a href="#"><span class="font-size-14">Tests</span></a></li>
+</ul>
+<ul class="tools text-right">
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-exclamation-circle"></i></a>
+<ul id="status-toggle" class="dropdown-menu dropdown-md p-v-0">
+<a class="dropdown-item" status="pass" href="#"><span>Pass</span><span class="status success"></span></a>
+<div class="dropdown-divider"></div>
+<a status="clear" class="dropdown-item" href="#"><span>Clear</span><span class="pull-right"><i class="fa fa-close"></i></span></a>
+</ul>
+</li>
+</ul>
+</div>    <div class="test-list-wrapper scrollable">
+      <ul class="test-list-item">
+        <li class="test-item"  status="pass" test-id="1"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">createBooking</p>
+            <p class="text-sm">
+              <span>8:08:22 AM</span> / <span>00:00:01:675</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">createBooking</h5>
+<span class='badge badge-success'>07.26.2026 8:08:22 AM</span>
+<span class='badge badge-danger'>07.26.2026 8:08:23 AM</span>
+<span class='badge badge-default'>00:00:01:675</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:23 AM</td>
+        <td>
+          <b>Request URI:</b> https://restful-booker.herokuapp.com/booking
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:23 AM</td>
+        <td>
+          <b>HTTP Method:</b> POST
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:23 AM</td>
+        <td>
+          <b>Status Code:</b> 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:23 AM</td>
+        <td>
+          <b>Response Payload:</b> <pre>{
+    "bookingid": 3795,
+    "booking": {
+        "firstname": "Raj",
+        "lastname": "Rajesh",
+        "totalprice": 111,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-01",
+            "checkout": "2019-01-01"
+        }
+    }
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>8:08:23 AM</td>
+        <td>
+          Test Passed Successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="2"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">updateBooking</p>
+            <p class="text-sm">
+              <span>8:08:23 AM</span> / <span>00:00:01:488</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">updateBooking</h5>
+<span class='badge badge-success'>07.26.2026 8:08:23 AM</span>
+<span class='badge badge-danger'>07.26.2026 8:08:25 AM</span>
+<span class='badge badge-default'>00:00:01:488</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:25 AM</td>
+        <td>
+          <b>Request URI:</b> https://restful-booker.herokuapp.com/booking/3795
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:25 AM</td>
+        <td>
+          <b>HTTP Method:</b> PUT
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:25 AM</td>
+        <td>
+          <b>Status Code:</b> 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:25 AM</td>
+        <td>
+          <b>Response Payload:</b> <pre>{
+    "firstname": "Taj",
+    "lastname": "Tajesh",
+    "totalprice": 222,
+    "depositpaid": true,
+    "bookingdates": {
+        "checkin": "2018-01-02",
+        "checkout": "2019-01-02"
+    }
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>8:08:25 AM</td>
+        <td>
+          Test Passed Successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="3"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">partialUpdateBooking</p>
+            <p class="text-sm">
+              <span>8:08:25 AM</span> / <span>00:00:01:570</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">partialUpdateBooking</h5>
+<span class='badge badge-success'>07.26.2026 8:08:25 AM</span>
+<span class='badge badge-danger'>07.26.2026 8:08:26 AM</span>
+<span class='badge badge-default'>00:00:01:570</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:26 AM</td>
+        <td>
+          <b>Request URI:</b> https://restful-booker.herokuapp.com/booking/3795
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:26 AM</td>
+        <td>
+          <b>HTTP Method:</b> PATCH
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:26 AM</td>
+        <td>
+          <b>Status Code:</b> 200
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:26 AM</td>
+        <td>
+          <b>Response Payload:</b> <pre>{
+    "firstname": "PartialUpTaj",
+    "lastname": "PartialUpTajesh",
+    "totalprice": 333,
+    "depositpaid": true,
+    "bookingdates": {
+        "checkin": "2018-01-02",
+        "checkout": "2019-01-02"
+    }
+}</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>8:08:26 AM</td>
+        <td>
+          Test Passed Successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+        <li class="test-item"  status="pass" test-id="4"
+          author=""
+          tag=""
+          device="">
+          <div class="test-detail">
+            <p class="name">deleteBooking</p>
+            <p class="text-sm">
+              <span>8:08:26 AM</span> / <span>00:00:01:579</span>
+              <span class="badge pass-bg log float-right">Pass</span>
+            </p>
+          </div>
+          <div class="test-contents d-none">
+<div class="detail-head">
+<div class="p-v-10">
+<div class="info">
+<h5 class="test-status text-pass">deleteBooking</h5>
+<span class='badge badge-success'>07.26.2026 8:08:26 AM</span>
+<span class='badge badge-danger'>07.26.2026 8:08:28 AM</span>
+<span class='badge badge-default'>00:00:01:579</span>
+&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
+<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
+<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
+<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
+</div>
+</div>
+</div><div class="detail-body mt-4">
+<table class="table table-sm">
+  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
+  <tbody>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:28 AM</td>
+        <td>
+          <b>Request URI:</b> https://restful-booker.herokuapp.com/booking/3795
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:28 AM</td>
+        <td>
+          <b>HTTP Method:</b> DELETE
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:28 AM</td>
+        <td>
+          <b>Status Code:</b> 201
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>8:08:28 AM</td>
+        <td>
+          <b>Response Payload:</b> <pre>Created</pre>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>8:08:28 AM</td>
+        <td>
+          Test Passed Successfully
+        </td>
+      </tr>
+  </tbody>
+</table>
+</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+<div class="test-content scrollable">
+<div class="test-content-tools">
+<ul><li><a class="back-to-test" href="#"><i class="fa fa-arrow-left"></i></a></li></ul>
+</div>
+<div class="test-content-detail"><div class="detail-body"></div></div>
+</div></div>
+<div class="container-fluid p-4 view dashboard-view">
+<div class="row">
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Started</p>
+<h3>Sunday, July 26, 2026, 08:08 AM (IST)</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0">Ended</p>
+<h3>Sunday, July 26, 2026, 08:08 AM (IST)</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-pass">Tests Passed</p>
+<h3>4</h3>
+</div></div>
+</div>
+<div class="col-md-3">
+<div class="card"><div class="card-body">
+<p class="m-b-0 text-fail">Tests Failed</p>
+<h3>0</h3>
+</div></div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Tests</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='parent-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='100%'>
+<b>4</b> tests passed
+</small>
+</div>
+<div>
+<small data-tooltip='0%'><b>0</b> tests failed,
+<b>0</b> skipped, <b data-tooltip='0%'>0</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="card">
+<div class="card-header">
+<h6 class="card-title">Log events</h6>
+</div>
+<div class="card-body">
+<div class="">
+<canvas id='events-analysis' width='115' height='90'></canvas>
+</div>
+</div>
+<div class="card-footer">
+<div><small data-tooltip='20%'><b>4</b> events passed</small></div>
+<div>
+<small data-tooltip='0%'><b>0</b> events failed,
+<b data-tooltip='%'>16</b> others
+</small>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><div class="col-md-12">
+<div class="card"><div class="card-header"><p>Timeline</p></div>
+<div class="card-body pt-0"><div>
+<canvas id="timeline" height="120"></canvas>
+</div></div>
+</div>
+</div></div>
+<script>
+var timeline = {
+"createBooking":1.675,"updateBooking":1.488,"partialUpdateBooking":1.57,"deleteBooking":1.579
+};
+</script>
+<div class="row">
+<div class="col-lg-6 col-md-12 sysenv-container">
+<div class="card">
+<div class="card-header"><p>System/Environment</p></div>
+<div class="card-body pb-0 pt-0"><table class="table table-sm table-bordered">
+<thead><tr class="bg-gray"><th>Name</th><th>Value</th></tr></thead>
+<tbody>
+<tr>
+<td>Environment</td>
+<td>QA Training</td>
+</tr>
+<tr>
+<td>Operating System</td>
+<td>Windows 11</td>
+</tr>
+<tr>
+<td>Java Version</td>
+<td>21.0.10</td>
+</tr>
+<tr>
+<td>Automation Framework</td>
+<td>REST Assured & TestNG</td>
+</tr>
+<tr>
+<td>Execution User</td>
+<td>ashish.ram</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+var statusGroup = {
+parentCount: 5,
+passParent: 4,
+failParent: 0,
+warningParent: 0,
+skipParent: 0,
+childCount: 5,
+passChild: 0,
+failChild: 0,
+warningChild: 0,
+skipChild: 0,
+infoChild: 0,
+grandChildCount: 5,
+passGrandChild: 0,
+failGrandChild: 0,
+warningGrandChild: 0,
+skipGrandChild: 0,
+infoGrandChild: 0,
+eventsCount: 5,
+passEvents: 4,
+failEvents: 0,
+warningEvents: 0,
+skipEvents: 0,
+infoEvents: 16
+};
+</script>        </div>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/gh/extent-framework/extent-github-cdn@ce8b10435bcbae260c334c0d0c6b61d2c19b6168/spark/js/spark-script.js"></script>
+<script type="text/javascript"></script></body>
+</html>

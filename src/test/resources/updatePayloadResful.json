@@ -1,0 +1,10 @@
+  {
+        "firstname": "Taj",
+        "lastname": "Tajesh",
+        "totalprice": 222,
+        "depositpaid": true,
+        "bookingdates": {
+            "checkin": "2018-01-02",
+            "checkout": "2019-01-02"
+        }
+    }
