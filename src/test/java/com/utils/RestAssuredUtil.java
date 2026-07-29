@@ -1,78 +1,117 @@
 package com.utils;
 
 import static io.restassured.RestAssured.given;
+
+import java.util.Map;
+
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import java.util.Map;
 
 public class RestAssuredUtil {
 
     /**
-     *  RequestSpecification- optional headers and body.
+     *  RequestSpecification with headers, query params, and body.
      */
-    private static RequestSpecification baseRequest(Map<String, String> headers, Object body) {
-        RequestSpecification request = given();
+    private static RequestSpecification baseRequest(
+            Map<String, String> headers, 
+            Map<String, String> queryParams, 
+            Object body) {
         
+        RequestSpecification request = given().log().ifValidationFails();
+
         if (headers != null && !headers.isEmpty()) {
             request.headers(headers);
         } else {
-            request.contentType("application/json"); // Default
+            request.contentType(ContentType.JSON);
         }
-        
+
+        if (queryParams != null && !queryParams.isEmpty()) {
+            request.queryParams(queryParams);
+        }
+
         if (body != null) {
             request.body(body);
         }
-        
+
         return request;
     }
 
     /**
-     * Reusable GET request method.
+     * GET request method (with Query Parameters).
+     */
+    public static Response performGet(String baseUri, String endpoint, Map<String, String> headers, Map<String, String> queryParams) {
+        return baseRequest(headers, queryParams, null)
+                .baseUri(baseUri)
+                .log().uri()
+                .when()
+                .get(endpoint)
+                .then()
+                .log().ifError() 
+                .extract()
+                .response();
+    }
+
+    /**
+     * GET request method (without Query Parameters).
      */
     public static Response performGet(String baseUri, String endpoint, Map<String, String> headers) {
-        return baseRequest(headers, null)
-                .baseUri(baseUri)
-                .when()
-                .get(endpoint);
+        return performGet(baseUri, endpoint, headers, null);
     }
 
     /**
-     * Reusable POST request method.
+     * POST request method.
      */
     public static Response performPost(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return baseRequest(headers, body)
+        return baseRequest(headers, null, body)
                 .baseUri(baseUri)
                 .when()
-                .post(endpoint);
+                .post(endpoint)
+                .then()
+                .log().ifError()
+                .extract()
+                .response();
     }
 
     /**
-     * Reusable PUT request method.
+     *  PUT request method.
      */
     public static Response performPut(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return baseRequest(headers, body)
+        return baseRequest(headers, null, body)
                 .baseUri(baseUri)
                 .when()
-                .put(endpoint);
+                .put(endpoint)
+                .then()
+                .log().ifError()
+                .extract()
+                .response();
     }
 
     /**
-     * Reusable PATCH request method.
+     *  PATCH request method.
      */
     public static Response performPatch(String baseUri, String endpoint, Map<String, String> headers, Object body) {
-        return baseRequest(headers, body)
+        return baseRequest(headers, null, body)
                 .baseUri(baseUri)
                 .when()
-                .patch(endpoint);
+                .patch(endpoint)
+                .then()
+                .log().ifError()
+                .extract()
+                .response();
     }
 
     /**
-     * Reusable DELETE request method.
+     *  DELETE request method.
      */
     public static Response performDelete(String baseUri, String endpoint, Map<String, String> headers) {
-        return baseRequest(headers, null)
+        return baseRequest(headers, null, null)
                 .baseUri(baseUri)
                 .when()
-                .delete(endpoint);
+                .delete(endpoint)
+                .then()
+                .log().ifError()
+                .extract()
+                .response();
     }
 }
