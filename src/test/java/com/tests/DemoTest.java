@@ -18,13 +18,15 @@ public class DemoTest extends BaseTest {
        
         
         baseURI="https://reqres.in";
+        String endPoint="/api/users/";
+        
 
 	    given()
 	    .header("x-api-key",ACCESS_TOKEN)
             .queryParams("page", 2)
             .log().uri()
         .when()
-            .get("/api/users/")
+            .get()
         .then()
             .statusCode(200)
             
